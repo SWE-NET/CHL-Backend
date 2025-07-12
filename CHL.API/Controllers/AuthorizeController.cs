@@ -6,18 +6,18 @@ namespace CHL.API.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
-public class LoginController : Controller
+public class AuthorizeController : Controller
 {
     private readonly IJWTService _jwt;
 
-    public LoginController(IJWTService jwt)
+    public AuthorizeController(IJWTService jwt)
     {
         _jwt = jwt;
     }
 
 
     [HttpPost]
-    public async Task<ActionResult<ResponseDTO>> Login(LoginDTO model)
+    public async Task<ActionResult<ResponseDTO>> Login([FromBody] LoginDTO model)
     {
         var result = await _jwt.Login(model);
 

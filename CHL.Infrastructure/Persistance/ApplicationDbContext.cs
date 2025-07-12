@@ -76,41 +76,41 @@ public class ApplicationDbContext : DbContext
             .HasForeignKey(p => p.Team_id)
             .OnDelete(DeleteBehavior.Restrict);
         
-        modelBuilder.Entity<News>()
-            .HasOne(n => n.Club)
-            .WithMany(c => c.NewsList)
-            .HasForeignKey(n => n.Club_id)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<News>()
-            .HasOne(n => n.Player)
-            .WithMany(p => p.NewsList)
-            .HasForeignKey(n => n.Player_id)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<News>()
-            .HasOne(n => n.Coach)
-            .WithMany(c => c.NewsList)
-            .HasForeignKey(n => n.Coach_id)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<News>()
-            .HasOne(n => n.Game)
-            .WithMany(g => g.NewsList)
-            .HasForeignKey(n => n.Game_id)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<News>()
-            .HasOne(n => n.Referee)
-            .WithMany(r => r.NewsList)
-            .HasForeignKey(n => n.Referee_id)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<News>()
-            .HasOne(n => n.Stadium)
-            .WithMany(s => s.NewsList)
-            .HasForeignKey(n => n.Stadium_id)
-            .OnDelete(DeleteBehavior.Restrict);
+        // modelBuilder.Entity<News>()
+        //     .HasOne(n => n.Club)
+        //     .WithMany(c => c.NewsList)
+        //     .HasForeignKey(n => n.Club_id)
+        //     .OnDelete(DeleteBehavior.Restrict);
+        //
+        // modelBuilder.Entity<News>()
+        //     .HasOne(n => n.Player)
+        //     .WithMany(p => p.NewsList)
+        //     .HasForeignKey(n => n.Player_id)
+        //     .OnDelete(DeleteBehavior.Restrict);
+        //
+        // modelBuilder.Entity<News>()
+        //     .HasOne(n => n.Coach)
+        //     .WithMany(c => c.NewsList)
+        //     .HasForeignKey(n => n.Coach_id)
+        //     .OnDelete(DeleteBehavior.Restrict);
+        //
+        // modelBuilder.Entity<News>()
+        //     .HasOne(n => n.Game)
+        //     .WithMany(g => g.NewsList)
+        //     .HasForeignKey(n => n.Game_id)
+        //     .OnDelete(DeleteBehavior.Restrict);
+        //
+        // modelBuilder.Entity<News>()
+        //     .HasOne(n => n.Referee)
+        //     .WithMany(r => r.NewsList)
+        //     .HasForeignKey(n => n.Referee_id)
+        //     .OnDelete(DeleteBehavior.Restrict);
+        //
+        // modelBuilder.Entity<News>()
+        //     .HasOne(n => n.Stadium)
+        //     .WithMany(s => s.NewsList)
+        //     .HasForeignKey(n => n.Stadium_id)
+        //     .OnDelete(DeleteBehavior.Restrict);
         
         modelBuilder.Entity<Game>()
             .HasOne(g => g.Referee)

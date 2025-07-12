@@ -10,9 +10,4 @@ public class NewsResponseDTO
     public string Img { get; set; }
     public string Date { get; set; }
     
-    public PlayerSimpleDTO Player { get; set; }
-    public RefereeSimpleDTO Referee { get; set; }
-    public StadiumSimpleDTO Stadium { get; set; }
-    public CoachSimpleDTO Coach { get; set; }
-    public GameSimpleDTO Game { get; set; }
 }

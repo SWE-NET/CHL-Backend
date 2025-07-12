@@ -1,6 +1,8 @@
 using CHL.Application.Abstractions;
 using CHL.Domain.DTOs;
 using CHL.Domain.Models;
+using CHL.Domain.Responses;
+using CHL.Domain.Simple;
 using CHL.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 
@@ -54,18 +56,51 @@ public class RefereeService : IRefereeService
         return "Referee deleted successfully";
     }
 
-    public async Task<Referee> GetById(Guid id)
+    public async Task<RefereeResponseDTO> GetById(Guid id)
     {
-        return await _db.Referees
+        var referee = await _db.Referees
             .Include(r => r.Games)
-            .Include(r => r.NewsList)
             .FirstOrDefaultAsync(r => r.Id == id);
+
+        if (referee == null)
+        {
+            return null;
+        }
+
+        return new RefereeResponseDTO
+        {
+            Id = referee.Id,
+            Fullname = referee.Fullname,
+            Experience = referee.Experience,
+            Country = referee.Country,
+            Img = referee.Img,
+            Games = referee.Games?.Select(g => new GameSimpleDTO
+            {
+                Id = g.Id,
+                Date = g.Date,
+                Type = g.Type
+            }).ToList()
+        };
     }
 
-    public async Task<List<Referee>> GetAll()
+    public async Task<List<RefereeResponseDTO>> GetAll()
     {
         return await _db.Referees
             .Include(r => r.Games)
+            .Select(r => new RefereeResponseDTO
+            {
+                Id = r.Id,
+                Fullname = r.Fullname,
+                Experience = r.Experience,
+                Country = r.Country,
+                Img = r.Img,
+                Games = r.Games.Select(g => new GameSimpleDTO
+                {
+                    Id = g.Id,
+                    Date = g.Date,
+                    Type = g.Type
+                }).ToList()
+            })
             .ToListAsync();
     }
 }

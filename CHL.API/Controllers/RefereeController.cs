@@ -1,6 +1,7 @@
 using CHL.Application.Abstractions;
 using CHL.Domain.DTOs;
 using CHL.Domain.Models;
+using CHL.Domain.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CHL.API.Controllers;
@@ -60,7 +61,7 @@ public class RefereeController : Controller
 
 
     [HttpGet]
-    public async Task<ActionResult<Referee>> GetById(Guid id)
+    public async Task<ActionResult<RefereeResponseDTO>> GetById(Guid id)
     {
         var result = await _service.GetById(id);
         
@@ -74,7 +75,7 @@ public class RefereeController : Controller
     
     
     [HttpGet]
-    public async Task<ActionResult<List<Referee>>> GetAll()
+    public async Task<ActionResult<List<RefereeResponseDTO>>> GetAll()
     {
         var result = await _service.GetAll();
         
